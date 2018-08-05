@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Configurar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider color="light">
+        <ion-icon name="thermometer" item-start></ion-icon> Temperatura (&deg;C)
+        <span *ngIf="temperature" item-end margin-right ion-text color="danger">
+          <b>{{temperature | number : '1.1-1'}}</b> &deg;C
+        </span>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>Máxima</ion-label>
+        <ion-input [(ngModel)]="temperatureMax" type="number" max="40" min="35" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mínima</ion-label>
+        <ion-input [(ngModel)]="temperatureMin" type="number" max="40" min="35" required></ion-input>
+      </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider color="light">
+        <ion-icon name="water" item-start></ion-icon> Umidade (&#37;)
+        <span *ngIf="humidity" item-end margin-right ion-text color="danger">
+          <b>{{humidity | number : '1.1-1'}}</b> &#37;
+        </span>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>Máxima</ion-label>
+        <ion-input [(ngModel)]="humidityMax" type="number" max="80" min="40" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mínima</ion-label>
+        <ion-input [(ngModel)]="humidityMin" type="number" max="80" min="40" required></ion-input>
+      </ion-item>
+    </ion-item-group>
+
+    <!-- <ion-item-group>
+      <ion-item-divider color="light">
+        <ion-icon name="timer" item-start></ion-icon> Viragem dos ovos
+      </ion-item-divider>
+      <ion-item id="scrollLegend">
+        <ion-label>{{scrolling ? "Ligada" : "Desligada"}}</ion-label>
+        <ion-toggle [(ngModel)]="scrolling"></ion-toggle>
+      </ion-item>
+    </ion-item-group> -->
+  </ion-list>
+
+  <ion-buttons margin end>
+    <button (click)="save()" ion-button>Salvar</button>
+  </ion-buttons>
+  
+</ion-content>

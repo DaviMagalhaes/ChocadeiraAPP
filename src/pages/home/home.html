@@ -1,14 +1,48 @@
 <ion-header>
   <ion-navbar>
+
     <ion-title>
-      Ionic Blank
+      Chocadeira
     </ion-title>
+
+    <ion-buttons end>
+      <button (click)="openSettingsPage()" [disabled]="!temperature || !humidity" ion-button icon-only>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div id="area">
+    <div id="status" *ngIf="temperature && humidity; else loading">
+
+      <h1 id="temperature">
+        <ion-icon name="thermometer"></ion-icon> {{temperature | number : '1.1-1'}} &deg;C
+      </h1>
+
+      <h2 id="humidity">
+        <ion-icon name="water"></ion-icon> {{humidity | number : '1.1-1'}} &#37;
+      </h2>
+
+      <h3 id="heating" [ngClass]="{'hidden': !heating}">
+        <ion-icon name="bonfire"></ion-icon> Aquecendo
+      </h3>
+
+      <p id="updated">
+        Última atualização às {{lastTimeShow}}.
+      </p>
+
+    </div>
+
+    <ng-template #loading>
+
+      <div id="loading">
+        <h1><ion-icon name="refresh"></ion-icon></h1>
+        <p>Aguardando...</p>
+      </div>
+
+    </ng-template>
+  </div> 
 </ion-content>
